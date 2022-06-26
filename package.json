@@ -1,5 +1,5 @@
 {
-  "name": "velo-mvvm",
+  "name": "@tzachf/velo-mvvm",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wix-incubator/velo-mvvm.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   },
   "author": "",
   "license": "ISC",
