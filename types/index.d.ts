@@ -1,3 +1,7 @@
+/// <reference path="/elementsMap.d.ts" />
+/// <reference path="/types/pages/$w.d.ts" />
+
+
 type PageElementsMapper <T extends keyof PageElementsMap> = T extends `#${infer Suffix}` ? Suffix : never;
 
 type RefsObject2<S extends KeyOfPageElementsMap> =
@@ -16,4 +20,9 @@ type RefsObject<S extends string> =
     } : never
 
 type KeyOfPageElementsMap = keyof PageElementsMap
-declare function bindView<T extends KeyOfPageElementsMap>(refs: RefsObject< keyof PageElementsMap>): any
+//declare function bindView<T extends KeyOfPageElementsMap>(refs: RefsObject< keyof PageElementsMap>): any
+
+
+declare module '@tzach-f/velo-mvvm' {
+    export function bindView<T extends KeyOfPageElementsMap>(refs: RefsObject< keyof PageElementsMap>): any
+}

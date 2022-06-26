@@ -11,9 +11,10 @@ type RefsObject2<S extends KeyOfPageElementsMap> =
 type RefsObject<S extends string> =
     S extends keyof PageElementsMap ? {
         [K in S as PageElementsMapper<K>] :  K extends KeyOfPageElementsMap ? {
-            [P in keyof PageElementsMap[K]]: any
+            [P in keyof PageElementsMap[K]]: PageElementsMapFunctionWrapper<PageElementsMap[K][P]>
         } : never
     } : never
 
+type PageElementsMapFunctionWrapper<S> = ()=> S
 type KeyOfPageElementsMap = keyof PageElementsMap
 declare function bindView<T extends KeyOfPageElementsMap>(refs: RefsObject< keyof PageElementsMap>): any
