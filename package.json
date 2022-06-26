@@ -1,24 +1,19 @@
 {
-  "name": "@tzachf/velo-mvvm",
+  "name": "velo-mvvm",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wix-private/velo-mvvm.git"
+    "url": "git+https://github.com/wix-incubator/velo-mvvm.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wix-private/velo-mvvm/issues"
+    "url": "https://github.com/wix-incubator/velo-mvvm/issues"
   },
-  "homepage": "https://github.com/wix-private/velo-mvvm#readme"
+  "homepage": "https://github.com/wix-incubator/velo-mvvm#readme"
 }
