@@ -1,0 +1,1 @@
+exports.bindView = bindView
