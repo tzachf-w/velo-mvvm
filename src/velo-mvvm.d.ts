@@ -15,6 +15,26 @@ type RefsObject<S extends string> =
         } : never
     } : never
 
+type BindConfigs = {
+    selectorFn? : Function;
+    index? : Number;
+    runOnReady? : Array<Function>
+}
+
+type RepeatersPageElementsMap<S extends string> =
+    S extends keyof PageElementsMap ?
+        PageElementsMap[S] extends $w.Repeater?{
+            [ K in S as PageElementsMapper<K>] : K extends keyof KeyOfPageElementsMap ? {
+                [P in keyof PageElementsMap[K]] : any
+            }: $w.Repeater
+        } : never
+        : never;
+
+
 type PageElementsMapFunctionWrapper<S> = ()=> S
-type KeyOfPageElementsMap = keyof PageElementsMap
-declare function bindView<T extends KeyOfPageElementsMap>(refs: RefsObject< keyof PageElementsMap>): any
+type KeyOfPageElementsMap = keyof PageElementsMap;
+
+declare module '@tzach-f/velo-mvvm' {
+    function bindView<T extends KeyOfPageElementsMap>(refs: RefsObject< keyof PageElementsMap>, config: BindConfigs): any;
+    function bindRepeaters(refs: RepeatersPageElementsMap<keyof PageElementsMap>): any;
+}

@@ -13,8 +13,17 @@ export function bindView(bindings, { selectorFn = $w, index = 0, runOnReady = []
                     case 'onClick':
                         selectorFn(selector).onClick(currValue);
                         break;
+                    case 'onDblClick':
+                        selectorFn(selector).onDblClick(currValue);
+                        break;
                     case 'onMouseIn':
                         selectorFn(selector).onMouseIn(currValue);
+                        break;
+                    case 'onMouseOut':
+                        selectorFn(selector).onMouseOut(currValue);
+                        break;
+                    case 'onInput':
+                        selectorFn(selector).onInput(currValue);
                         break;
                     case 'text':
                         autorun(() => {
@@ -26,8 +35,21 @@ export function bindView(bindings, { selectorFn = $w, index = 0, runOnReady = []
                             selectorFn(selector).style.backgroundColor = `${currValue(index)}`;
                         })
                         break;
-                    //case 'changeState':
-
+                    case  'borderColor':
+                        autorun(() => {
+                            selectorFn(selector).style.borderColor = `${currValue(index)}`
+                        })
+                        break;
+                    case  'borderWidth':
+                        autorun(() => {
+                            selectorFn(selector).style.borderWidth = `${currValue(index)}`
+                        })
+                        break;
+                    case  'borderRadius':
+                        autorun(() => {
+                            selectorFn(selector).style.borderRadius = `${currValue(index)}`
+                        })
+                        break;
                     case 'events':
                         //curValue = events
                         autorun(() => {
@@ -45,8 +67,26 @@ export function bindView(bindings, { selectorFn = $w, index = 0, runOnReady = []
                             }
                         });
                         break;
-                    case 'state':
-                        autorun( () => {
+                    case 'collapsed':
+                        autorun(() => {
+                            if (currValue(index)) {
+                                selectorFn(selector).collapse();
+                            } else {
+                                selectorFn(selector).expand();
+                            }
+                        });
+                        break;
+                    case 'enabled':
+                        autorun(() => {
+                            if (currValue(index)) {
+                                selectorFn(selector).enable();
+                            } else {
+                                selectorFn(selector).disable();
+                            }
+                        });
+                        break;
+                    case 'currentState':
+                        autorun(() => {
                             selectorFn(selector).changeState(currValue(index));
                         });
                         break;
@@ -81,6 +121,15 @@ export function bindRepeaters(bindings) {
                                 bindView(currValue, { selectorFn: $item, index });
                             });
                         })
+                        break;
+                    case 'collapsed':
+                        autorun(() => {
+                            if (currValue()) {
+                                $w(selector).collapse();
+                            } else {
+                                $w(selector).expand();
+                            }
+                        });
                         break;
                     default:
                         break;
